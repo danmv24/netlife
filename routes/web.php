@@ -19,8 +19,8 @@ Route::get('/', [HomeController::class, 'index'])->name('homePage');
 /**
  * Auth
  */
-Route::get('/signup', [AuthController::class, 'getSignUp'])->name('signUp');
-Route::post('/signup', [AuthController::class, 'postSignUp']);
-Route::get('/login', [AuthController::class, 'getLogIn'])->name('logIn');
-Route::post('/login', [AuthController::class, 'postLogIn']);
+Route::get('/signup', [AuthController::class, 'getSignUp'])->middleware('guest')->name('signUp');
+Route::post('/signup', [AuthController::class, 'postSignUp'])->middleware('guest');
+Route::get('/login', [AuthController::class, 'getLogIn'])->middleware('guest')->name('logIn');
+Route::post('/login', [AuthController::class, 'postLogIn'])->middleware('guest');
 Route::get('/logout', [AuthController::class, 'getLogOut'])->name('logOut');
