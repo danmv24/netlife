@@ -2,7 +2,9 @@
     <div class="container">
 
         <a class="navbar-brand" href="{{ route('homePage') }}">NetLife</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -25,12 +27,12 @@
             @endif
             <ul class="navbar-nav ml-auto">
                 @if (\Illuminate\Support\Facades\Auth::check())
-                    <li class="nav-item"><a href="#" class="nav-link">{{ \Illuminate\Support\Facades\Auth::user()->getNameOrUsername() }}</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">Обновить профиль</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">{{ Auth::user()->getUsername() }}</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Профиль</a></li>
                     <li class="nav-item"><a href="/" class="nav-link">Выйти</a></li>
                 @else
                         <li class="nav-item"><a href="{{ route('signUp') }}" class="nav-link">Регистрация</a></li>
-                        <li class="nav-item"><a href="/" class="nav-link">Войти</a></li>
+                        <li class="nav-item"><a href="{{ route('logIn') }}" class="nav-link">Войти</a></li>
                 @endif
             </ul>
         </div>
