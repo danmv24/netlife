@@ -61,4 +61,11 @@ class AuthController extends Controller
 
         return redirect()->route('homePage')->with('info', 'Вход выполнен успешно!');
     }
+
+    public function getLogOut()
+    {
+        Auth::logout();
+
+        return redirect()->route('homePage');
+    }
 }

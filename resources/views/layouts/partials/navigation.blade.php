@@ -29,7 +29,7 @@
                 @if (\Illuminate\Support\Facades\Auth::check())
                     <li class="nav-item"><a href="#" class="nav-link">{{ Auth::user()->getUsername() }}</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">Профиль</a></li>
-                    <li class="nav-item"><a href="/" class="nav-link">Выйти</a></li>
+                    <li class="nav-item"><a href="{{ route('logOut') }}" class="nav-link">Выйти</a></li>
                 @else
                         <li class="nav-item"><a href="{{ route('signUp') }}" class="nav-link">Регистрация</a></li>
                         <li class="nav-item"><a href="{{ route('logIn') }}" class="nav-link">Войти</a></li>

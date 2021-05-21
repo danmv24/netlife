@@ -23,3 +23,4 @@ Route::get('/signup', [AuthController::class, 'getSignUp'])->name('signUp');
 Route::post('/signup', [AuthController::class, 'postSignUp']);
 Route::get('/login', [AuthController::class, 'getLogIn'])->name('logIn');
 Route::post('/login', [AuthController::class, 'postLogIn']);
+Route::get('/logout', [AuthController::class, 'getLogOut'])->name('logOut');
