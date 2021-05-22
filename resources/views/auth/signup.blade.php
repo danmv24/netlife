@@ -21,7 +21,7 @@
                 <div class="mb-3">
                     <label for="username" class="form-label">Логин</label>
                     <input type="text" name="username" class="form-control{{ $errors->has('username') ? " is-invalid" : ""}}"
-                           id="username" placeholder="Имя и Фамилия"
+                           id="username" placeholder="Ваш Логин"
                            value="{{ Request::old('username') ?: '' }}">
                     @if ($errors->has('username'))
                         <span class="help-block text-danger">

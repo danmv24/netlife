@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +31,7 @@ Route::get('/logout', [AuthController::class, 'getLogOut'])->name('logOut');
  * Search
  */
 Route::get('/search', [SearchController::class, 'getResult'])->name('search');
+/**
+ * Profiles
+ */
+Route::get('/profile/{username}', [ProfileController::class, 'getProfile'])->name('getProfile');
