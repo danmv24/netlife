@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +25,8 @@ Route::post('/signup', [AuthController::class, 'postSignUp'])->middleware('guest
 Route::get('/login', [AuthController::class, 'getLogIn'])->middleware('guest')->name('logIn');
 Route::post('/login', [AuthController::class, 'postLogIn'])->middleware('guest');
 Route::get('/logout', [AuthController::class, 'getLogOut'])->name('logOut');
+
+/**
+ * Search
+ */
+Route::get('/search', [SearchController::class, 'getResult'])->name('search');

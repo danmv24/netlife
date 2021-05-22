@@ -20,8 +20,8 @@
                         <a class="nav-link" href="#">Сообщения</a>
                     </li>
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Search">
+                <form action="{{ route('search') }}" class="d-flex" method="get">
+                    <input name="query"  class="form-control me-2" type="search" placeholder="Поиск" aria-label="Search">
                     <button class="btn btn-success" type="submit">Найти</button>
                 </form>
             @endif
