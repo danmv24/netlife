@@ -11,7 +11,13 @@
             @if (\Illuminate\Support\Facades\Auth::check())
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Друзья</a>
+                        <a class="nav-link" href="#">Стена</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('showFriend') }}">Друзья</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('allRequests') }}">Запросы</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Сообщения</a>

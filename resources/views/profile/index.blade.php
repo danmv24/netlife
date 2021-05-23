@@ -10,7 +10,7 @@
                 <h4>Друзья {{ $user->getUsername() }}</h4>
 
                 @if (!$user->friends()->count())
-                    <p>У Вас нет друзей(((</p>
+                    <p>У {{ $user->getUsername() }} нет друзей(((</p>
                 @else
                     @foreach ($user->friends() as $user)
                         @include('users.users')
