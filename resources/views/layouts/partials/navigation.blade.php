@@ -11,9 +11,6 @@
             @if (\Illuminate\Support\Facades\Auth::check())
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Профиль</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="#">Друзья</a>
                     </li>
                     <li class="nav-item">
@@ -27,8 +24,8 @@
             @endif
             <ul class="navbar-nav ml-auto">
                 @if (\Illuminate\Support\Facades\Auth::check())
-                    <li class="nav-item"><a href="{{ route('getProfile', ['username' => Auth::user()->username]) }}" class="nav-link">{{ Auth::user()->getUsername() }}</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">Профиль</a></li>
+                    <li class="nav-item"><a href="{{ route('showProfile', ['username' => Auth::user()->username]) }}" class="nav-link">{{ Auth::user()->getUsername() }}</a></li>
+                    <li class="nav-item"><a href="{{ route('editProfile') }}" class="nav-link">Обновить профиль</a></li>
                     <li class="nav-item"><a href="{{ route('logOut') }}" class="nav-link">Выйти</a></li>
                 @else
                         <li class="nav-item"><a href="{{ route('signUp') }}" class="nav-link">Регистрация</a></li>

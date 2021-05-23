@@ -31,7 +31,10 @@ Route::get('/logout', [AuthController::class, 'getLogOut'])->name('logOut');
  * Search
  */
 Route::get('/search', [SearchController::class, 'getResult'])->name('search');
+
 /**
  * Profiles
  */
-Route::get('/profile/{username}', [ProfileController::class, 'getProfile'])->name('getProfile');
+Route::get('/user/profile/{username}', [ProfileController::class, 'showProfile'])->name('showProfile');
+Route::get('/profile/edit', [ProfileController::class, 'getEditProfile'])->middleware('auth')->name('editProfile');
+Route::post('/profile/edit', [ProfileController::class, 'postEditProfile'])->middleware('auth')->name('editProfile');

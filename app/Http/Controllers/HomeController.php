@@ -8,6 +8,9 @@ class HomeController extends Controller
 {
     public function index()
     {
+        /**
+         * Возвращает домашнюю страницу
+         */
         return view('home');
     }
 }

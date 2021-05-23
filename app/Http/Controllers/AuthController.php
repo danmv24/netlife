@@ -10,7 +10,10 @@ class AuthController extends Controller
 {
     public function getSignUp()
     {
-        return view('auth.signup'); // страница регистрации
+        /**
+         * Возвращает страницу с регистрацией
+         */
+        return view('auth.signup');
     }
 
     public function postSignUp(Request $request)
@@ -43,7 +46,10 @@ class AuthController extends Controller
 
     public function getLogIn()
     {
-        return view('auth.login'); // страница входа
+        /**
+         * Возвращает страницу входа
+         */
+        return view('auth.login');
     }
 
     public function postLogIn(Request $request)
@@ -64,6 +70,9 @@ class AuthController extends Controller
 
     public function getLogOut()
     {
+        /**
+         * Выйти из аккаунта
+         */
         Auth::logout();
 
         return redirect()->route('homePage');

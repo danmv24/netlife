@@ -22,6 +22,9 @@ class SearchController extends Controller
             return redirect()->route('homePage');
         }
 
+        /**
+         * Ищем пользователя, имя которого совпадает с именем из запроса
+         */
         $users = User::where('username', $query)->get();
 
         return view('search.result', [
