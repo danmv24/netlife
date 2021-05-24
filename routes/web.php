@@ -46,3 +46,4 @@ Route::post('/profile/edit', [ProfileController::class, 'postEditProfile'])->mid
 Route::get('/friends', [FriendController::class, 'showFriend'])->middleware('auth')->name('showFriend');
 Route::get('/friends/all_requests', [FriendController::class, 'showRequest'])->middleware('auth')->name('allRequests');
 Route::get('/friends/add/{username}', [FriendController::class, 'addToFriend'])->middleware('auth')->name('add');
+Route::get('/friends/accept/{username}', [FriendController::class, 'acceptFriendRequest'])->middleware('auth')->name('accept');

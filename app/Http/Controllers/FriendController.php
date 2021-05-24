@@ -26,6 +26,9 @@ class FriendController extends Controller
         ]);
     }
 
+    /**
+     * Добавить в друзья (а именно отправить заявку в друзья)
+     */
     public function addToFriend($username)
     {
         /**
@@ -56,6 +59,28 @@ class FriendController extends Controller
 
         return redirect()->route('showProfile', ['username' => $username])
             ->with('info', 'Запрос в друзья отправлен');
+    }
+
+    /**
+     * Принять заявку в друзья
+     */
+    public function acceptFriendRequest($username)
+    {
+        $user = User::where('username', $username)->first();
+
+        if (!$user) {
+            return redirect()->route('homePage')
+                ->with('info', 'Пользователь с таким именем не найден');
+        }
+
+        if (!Auth::user()->hasFriendRequestReceived($user)) {
+            return redirect()->route('homePage');
+        }
+
+        Auth::user()->acceptFriendRequest($user);
+
+        return redirect()->route('showProfile', ['username' => $username])
+            ->with('info', 'Запрос в друзья принят');
     }
 
 }

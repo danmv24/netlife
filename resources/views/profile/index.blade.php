@@ -11,10 +11,11 @@
                 @if (Auth::user()->hasFriendRequestsPending($user))
                     <p>В ожидании подтверждения запроса в друзья</p>
                 @elseif (Auth::user()->hasFriendRequestReceived($user))
-                    <a href="#" class="btn btn-primary mb-2">Подтвердить запрос</a>
+                    <a href="{{ route('accept', ['username' => $user->username]) }}"
+                       class="btn btn-primary mb-2">Подтвердить запрос</a>
                 @elseif(Auth::user()->isFriendWith($user))
                     {{ $user->getUsername() }} у вас в друзьях
-                @else
+                @elseif (Auth::user()->id !== $user->getId())
                     <a href="{{ route('add', ['username' => $user->username]) }}"
                        class="btn btn-primary mb-2">Добавить в друзья</a>
                 @endif
