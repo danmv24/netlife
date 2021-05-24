@@ -11,6 +11,6 @@ class HomeController extends Controller
         /**
          * Возвращает домашнюю страницу
          */
-        return view('home');
+        return view('feed.index');
     }
 }

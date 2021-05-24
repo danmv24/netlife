@@ -3,11 +3,19 @@
 @section('content')
     <div class="row">
         <div class="col-lg-6">
-            <form action="#" method="post">
+            <form action="{{ route('createPost') }}" method="post">
+            @csrf
                 <div class="form-group">
-                    <textarea rows="3" class="form-control" placeholder="Что у вас нового?"></textarea>
+                    <textarea name="status" rows="3"
+                              class="form-control{{ $errors->has('status') ? ' is-invalid' : '' }}"
+                              placeholder="Что у вас нового?"></textarea>
+                    @if ($errors->has('status'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first('status') }}
+                        </div>
+                    @endif
                 </div>
-                <button type="submit" class="btn btn-primary">Поделиться</button>
+                <button type="submit" class="btn btn-primary mt-3">Поделиться</button>
             </form>
         </div>
     </div>

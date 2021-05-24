@@ -41,11 +41,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * Получить имя пользователя
+     */
     public function getUsername()
     {
-        /**
-         * Получить имя пользователя
-         */
         return $this->username;
     }
 
@@ -54,19 +54,27 @@ class User extends Authenticatable
         return $this->id;
     }
 
+    /**
+     * Получить аватар пользователя
+     */
     public function getAvatar()
-        /**
-         * Получить аватар пользователя
-         */
     {
         return "https://www.gravatar.com/avatar/{{ md5($this->email)?d=mp&s=40 }}";
     }
 
+    /**
+     * Пользователю принадлежит публикация
+     */
+    public function statuses()
+    {
+        return $this->hasMany('App\Models\Status', 'user_id');
+    }
+
+    /**
+     * Отношения многие ко многим(мои друзья)
+     */
     public function myFriends()
     {
-        /**
-         * Отношения многие ко многим(мои друзья)
-         */
         return $this->belongsToMany('App\Models\User', 'friends',
             'user_id', 'friend_id');
     }

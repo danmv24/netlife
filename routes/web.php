@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FriendController;
+use App\Http\Controllers\StatusController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,3 +48,8 @@ Route::get('/friends', [FriendController::class, 'showFriend'])->middleware('aut
 Route::get('/friends/all_requests', [FriendController::class, 'showRequest'])->middleware('auth')->name('allRequests');
 Route::get('/friends/add/{username}', [FriendController::class, 'addToFriend'])->middleware('auth')->name('add');
 Route::get('/friends/accept/{username}', [FriendController::class, 'acceptFriendRequest'])->middleware('auth')->name('accept');
+
+/**
+ * Feed
+ */
+Route::post('/feed', [StatusController::class, 'createPost'])->middleware('auth')->name('createPost');
