@@ -26,4 +26,36 @@ class FriendController extends Controller
         ]);
     }
 
+    public function addToFriend($username)
+    {
+        /**
+         * Находим в бд пользователя по username'у и получаем его
+         */
+        $user = User::where('username', $username)->first();
+
+        /**
+         * Если пользователь не найден, то перенаправить на домашнюю страницу с сообщением
+         */
+        if (!$user) {
+            return redirect()->route('homePage')
+                ->with('info', 'Пользователь с таким именем не найден');
+        }
+
+        if (Auth::user()->hasFriendRequestsPending($user)
+            || $user->hasFriendRequestsPending(Auth::user())) {
+            return redirect()->route('showProfile', ['username' => $user->username])
+                ->with('info', 'Запрос в друзья отправлен');
+        }
+
+        if (Auth::user()->isFriendWith($user)) {
+            return redirect()->route('showProfile', ['username' => $user->username])
+                ->with('info', 'Пользователь уже в друзьях');
+        }
+
+        Auth::user()->addFriend($user);
+
+        return redirect()->route('showProfile', ['username' => $username])
+            ->with('info', 'Запрос в друзья отправлен');
+    }
+
 }
