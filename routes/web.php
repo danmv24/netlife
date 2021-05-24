@@ -48,6 +48,7 @@ Route::get('/friends', [FriendController::class, 'showFriend'])->middleware('aut
 Route::get('/friends/all_requests', [FriendController::class, 'showRequest'])->middleware('auth')->name('allRequests');
 Route::get('/friends/add/{username}', [FriendController::class, 'addToFriend'])->middleware('auth')->name('add');
 Route::get('/friends/accept/{username}', [FriendController::class, 'acceptFriendRequest'])->middleware('auth')->name('accept');
+Route::post('/friends/delete/{username}', [FriendController::class, 'deleteFriend'])->middleware('auth')->name('deleteFriend');
 
 /**
  * Feed

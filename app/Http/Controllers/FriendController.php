@@ -83,4 +83,16 @@ class FriendController extends Controller
             ->with('info', 'Запрос в друзья принят');
     }
 
+    public function deleteFriend($username)
+    {
+        $user = User::where('username', $username)->first();
+
+        if (! Auth::user()->isFriendWith($user)) {
+            return redirect()->back();
+        }
+
+        Auth::user()->deleteFriend($user);
+
+        return redirect()->back()->with('info', 'Пользователь удалён из друзей');
+    }
 }
