@@ -20,6 +20,7 @@ use App\Http\Controllers\StatusController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('homePage');
+
 /**
  * Auth
  */
@@ -54,3 +55,4 @@ Route::post('/friends/delete/{username}', [FriendController::class, 'deleteFrien
  * Feed
  */
 Route::post('/feed', [StatusController::class, 'createPost'])->middleware('auth')->name('createPost');
+Route::post('/feed/{feedId}/reply', [StatusController::class, 'reply'])->middleware('auth')->name('reply');
