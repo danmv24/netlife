@@ -4,6 +4,80 @@
         <div class="row">
             <div class="col-lg-5">
                 @include('users.users')
+                <hr>
+
+                @if (!$statuses->count())
+                    <p>У {{ $user->getUsername() }} нет записей</p>
+                @else
+                    @foreach($statuses as $status)
+                        <div class="media">
+                            <a href="{{ route('showProfile', ['username'=> $status->user->username]) }}" class="mr3">
+                                <img src="{{ $status->user->getAvatar() }}" alt="{{ $status->user->getUsername() }}"
+                                     class="media-object rounded">
+                            </a>
+                            <div class="media-body">
+                                <h4>
+                                    <a href="{{ route('showProfile', ['username'=> $status->user->username]) }}">
+                                        {{ $status->user->getUsername() }}</a>
+                                </h4>
+                                <p>{{ $status->body }}</p>
+                                <ul class="list-inline">
+                                    <li class="list-inline-item">
+                                        <a href="#">Лайк</a>
+                                    </li>
+                                    <li class="list-inline-item">10 лайков</li>
+                                </ul>
+
+
+
+                                {{--        Комментарии           --}}
+
+                                @foreach($status->replies as $reply)
+                                    <div class="media">
+                                        <a href="{{ route('showProfile', ['username'=> $reply->user->username]) }}" class="mr3">
+                                            <img src="{{ $reply->user->getAvatar() }}" alt="{{ $reply->user->getUsername() }}"
+                                                 class="media-object rounded">
+                                        </a>
+                                        <div class="media-body">
+                                            <h4>
+                                                <a href="{{ route('showProfile', ['username'=> $reply->user->username]) }}">
+                                                    {{ $reply->user->getUsername() }}</a>
+                                            </h4>
+                                            <p>{{ $reply->body }}</p>
+                                            <ul class="list-inline">
+
+                                                <li class="list-inline-item">
+                                                    <a href="#">Лайк</a>
+                                                </li>
+                                                <li class="list-inline-item">10 лайков</li>
+                                            </ul>
+                                @endforeach
+
+
+                                            @if ($authUserIsFriend || Auth::user()->id === $status->user->id)
+                                                <form action="{{ route('reply', ['feedId' => $status->id]) }}"
+                                                      method="post" class="mb-4">
+                                                    @csrf
+                                                    <div class="form-group">
+                                                        <textarea name="reply-{{ $status->id }}" rows="3"
+                                                                  class="form-control{{ $errors->has("reply-{ $status->id }") ? ' is-invalid' : '' }}"
+                                                                  placeholder="Прокоментировать запись"></textarea>
+                                                        @if ($errors->has("reply-{ $status->id }"))
+                                                            <div class="invalid-feedback">
+                                                                {{ $errors->first("reply-{ $status->id }") }}
+                                                            </div>
+                                                        @endif
+                                                    </div>
+                                                    <button type="submit" class="btn btn-primary btn-sm mt-3">Отправить</button>
+                                                </form>
+                                            @endif
+                                        </div>
+                                    </div>
+                    @endforeach
+
+
+                @endif
+
             </div>
 
             <div class="col-lg-4 col-lg-offset-3">
