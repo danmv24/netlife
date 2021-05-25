@@ -28,7 +28,7 @@ class StatusController extends Controller
            "reply-{$feedId}" => 'required|max:1024'
         ]);
 
-        $status = Status::find($feedId);
+        $status = Status::notReply()->find($feedId);
 
         if (!$status) {
             return redirect()->route('homePage');
@@ -38,5 +38,13 @@ class StatusController extends Controller
             && Auth::user()->id !== $status->user->id) {
             return redirect()->route('homePage');
         }
+
+        $reply = new Status();
+        $reply->body = $request->input("reply-{$status->id}");
+        $reply->user()->associate(Auth::user());
+
+        $status->replies()->save($reply);
+
+        return redirect()->back();
     }
 }

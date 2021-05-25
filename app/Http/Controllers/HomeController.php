@@ -15,7 +15,7 @@ class HomeController extends Controller
              * Выводить те записи, которые принадлежат
              * авторизованному пользователю
              */
-            $statuses = Status::where(function ($query) {
+            $statuses = Status::notReply()->where(function ($query) {
                return $query->where('user_id', Auth::user()->id)
                    ->orWhereIn('user_id', Auth::user()->friends()->pluck('id'));
             })->orderBy('created_at', 'desc')
