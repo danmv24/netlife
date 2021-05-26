@@ -59,7 +59,7 @@ class ProfileController extends Controller
     {
         $user = User::where('username', $username)->first();
 
-        if (!Auth::user()->id === $user->id) {
+        if (Auth::user()->id !== $user->id) {
             return redirect()->route('home');
         }
 
