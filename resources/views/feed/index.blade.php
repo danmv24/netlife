@@ -38,13 +38,7 @@
                                 {{ $status->user->getUsername() }}</a>
                         </h4>
                         <p>{{ $status->body }}</p>
-                        <ul class="list-inline">
 
-                            <li class="list-inline-item">
-                                <a href="#">Лайк</a>
-                            </li>
-                            <li class="list-inline-item">10 лайков</li>
-                        </ul>
 
 
 
@@ -62,13 +56,7 @@
                                                 {{ $reply->user->getUsername() }}</a>
                                         </h4>
                                         <p>{{ $reply->body }}</p>
-                                        <ul class="list-inline">
 
-                                            <li class="list-inline-item">
-                                                <a href="#">Лайк</a>
-                                            </li>
-                                            <li class="list-inline-item">10 лайков</li>
-                                        </ul>
 
 
                             @endforeach

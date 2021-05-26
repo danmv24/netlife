@@ -6,6 +6,17 @@
                 @include('users.users')
                 <hr>
 
+
+                @if (Auth::user()->id === $user->id)
+                    <form action="{{ route('uploadAvatar', ['username' => Auth::user()->username]) }}" enctype="multipart/form-data" method="post" class="my-4">
+                        @csrf
+
+                        <label for="avatar">Загрузить аватар</label>
+                        <input type="file" name="avatar" id="avatar">
+                        <input type="submit" value="Загрузить" class="btn btn-primary">
+                    </form>
+                @endif
+
                 @if (!$statuses->count())
                     <p>У {{ $user->getUsername() }} нет записей</p>
                 @else
@@ -21,12 +32,7 @@
                                         {{ $status->user->getUsername() }}</a>
                                 </h4>
                                 <p>{{ $status->body }}</p>
-                                <ul class="list-inline">
-                                    <li class="list-inline-item">
-                                        <a href="#">Лайк</a>
-                                    </li>
-                                    <li class="list-inline-item">10 лайков</li>
-                                </ul>
+
 
 
 
@@ -44,13 +50,7 @@
                                                     {{ $reply->user->getUsername() }}</a>
                                             </h4>
                                             <p>{{ $reply->body }}</p>
-                                            <ul class="list-inline">
 
-                                                <li class="list-inline-item">
-                                                    <a href="#">Лайк</a>
-                                                </li>
-                                                <li class="list-inline-item">10 лайков</li>
-                                            </ul>
                                 @endforeach
 
 

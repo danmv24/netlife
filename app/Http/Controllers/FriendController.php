@@ -44,6 +44,10 @@ class FriendController extends Controller
                 ->with('info', 'Пользователь с таким именем не найден');
         }
 
+        if (Auth::user()->id === $user->id) {
+            return redirect()->route('home');
+        }
+
         if (Auth::user()->hasFriendRequestsPending($user)
             || $user->hasFriendRequestsPending(Auth::user())) {
             return redirect()->route('showProfile', ['username' => $user->username])

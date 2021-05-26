@@ -160,4 +160,24 @@ class User extends Authenticatable
     {
         return (bool) $this->friends()->where('id', $user->id)->count();
     }
+
+    public function avatarsPath($user_id)
+    {
+        $path = "uploads/avatars/id{$user_id}";
+
+        if (!file_exists("$path")) {
+            mkdir($path, 777, true);
+        }
+
+        return "/$path/";
+    }
+
+    public function clearAvatars($user_id)
+    {
+        $path = "uploads/avatars/id{$user_id}";
+
+        if (file_exists(public_path($path))) {
+
+        }
+    }
 }
