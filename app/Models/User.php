@@ -166,7 +166,7 @@ class User extends Authenticatable
         $path = "uploads/avatars/id{$user_id}";
 
         if (!file_exists("$path")) {
-            mkdir($path, 777, true);
+            mkdir($path, 0755, true);
         }
 
         return "/$path/";
@@ -176,8 +176,10 @@ class User extends Authenticatable
     {
         $path = "uploads/avatars/id{$user_id}";
 
-        if (file_exists(public_path($path))) {
-
+        if (file_exists(public_path("/$path"))) {
+            foreach (glob(public_path("/$path/*")) as $avatar) {
+                unlink($avatar);
+            }
         }
     }
 }

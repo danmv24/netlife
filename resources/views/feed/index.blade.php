@@ -29,8 +29,7 @@
             @foreach($statuses as $status)
                 <div class="media">
                     <a href="{{ route('showProfile', ['username'=> $status->user->username]) }}" class="mr3">
-                        <img src="{{ $status->user->getAvatar() }}" alt="{{ $status->user->getUsername() }}"
-                             class="media-object rounded">
+                        @include("layouts.partials.avatar")
                     </a>
                     <div class="media-body">
                         <h4>
@@ -47,8 +46,7 @@
                             @foreach($status->replies as $reply)
                                 <div class="media">
                                     <a href="{{ route('showProfile', ['username'=> $reply->user->username]) }}" class="mr3">
-                                        <img src="{{ $reply->user->getAvatar() }}" alt="{{ $reply->user->getUsername() }}"
-                                             class="media-object rounded">
+                                        @include("layouts.partials.avatar")
                                     </a>
                                     <div class="media-body">
                                         <h4>
