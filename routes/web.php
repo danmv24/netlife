@@ -7,6 +7,7 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FriendController;
 use App\Http\Controllers\StatusController;
+use App\Http\Controllers\MessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,3 +58,10 @@ Route::post('/friends/delete/{username}', [FriendController::class, 'deleteFrien
  */
 Route::post('/feed', [StatusController::class, 'createPost'])->middleware('auth')->name('createPost');
 Route::post('/feed/{feedId}/reply', [StatusController::class, 'reply'])->middleware('auth')->name('reply');
+
+
+/**
+ * Messages
+ */
+Route::get('/message/{username}', [MessageController::class, 'showMessagePage'])->middleware('auth')->name('showMessagePage');
+Route::post('/message/{username}', [MessageController::class, 'sendMessage'])->middleware('auth')->name('sendMessage');

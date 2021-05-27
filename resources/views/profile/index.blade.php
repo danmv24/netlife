@@ -4,6 +4,7 @@
         <div class="row">
             <div class="col-lg-5">
                 @include('users.users')
+                <a href="{{ route('sendMessage', ['username' => $user->username]) }}" class="btn btn-primary">Написать</a>
                 <hr>
 
 
@@ -16,6 +17,8 @@
                         <input type="submit" value="Загрузить" class="btn btn-primary">
                     </form>
                 @endif
+
+
 
                 @if (!$statuses->count())
                     <p>У {{ $user->getUsername() }} нет записей</p>
