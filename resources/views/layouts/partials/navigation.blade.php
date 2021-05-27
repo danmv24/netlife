@@ -19,9 +19,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('allRequests') }}">Запросы</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Сообщения</a>
-                    </li>
                 </ul>
                 <form action="{{ route('search') }}" class="d-flex" method="get">
                     <input name="query"  class="form-control me-2" type="search" placeholder="Поиск" aria-label="Search">
