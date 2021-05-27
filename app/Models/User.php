@@ -71,6 +71,15 @@ class User extends Authenticatable
     }
 
     /**
+     * Пользователю принадлежит сообщение
+     */
+    public function messages()
+    {
+        return $this->hasMany('App\Models\Message', 'auth_id');
+    }
+
+
+    /**
      * Отношения многие ко многим(мои друзья)
      */
     public function myFriends()
