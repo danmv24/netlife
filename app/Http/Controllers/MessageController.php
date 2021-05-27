@@ -8,7 +8,6 @@ use App\Models\Message;
 use App\Models\User;
 
 
-
 class MessageController extends Controller
 {
 
@@ -20,7 +19,19 @@ class MessageController extends Controller
             return redirect()->route('homePage');
         }
 
-        return view('messages.message', compact('username'));
+        $sent_by_me = Message::where('auth_id', Auth::user()->id)
+                    ->where('recipient_id', $user->id);
+
+        $conversation = Message::where('auth_id', $user->id)
+                        ->where('recipient_id', Auth::user()->id)
+                        ->union($sent_by_me)
+                        ->orderBy('created_at', 'asc')
+                        ->get();
+
+        return view('messages.message', [
+            'username' => $username,
+            'conversation' => $conversation
+        ]);
     }
 
     public function sendMessage(Request $request, $username)
@@ -35,6 +46,7 @@ class MessageController extends Controller
            'message' => $request->input('message'),
             'recipient_id' => $user->id
         ]);
+
 
         return redirect()->back();
     }
