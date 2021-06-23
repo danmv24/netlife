@@ -65,3 +65,13 @@ Route::post('/feed/{feedId}/reply', [StatusController::class, 'reply'])->middlew
  */
 Route::get('/message/{username}', [MessageController::class, 'showMessagePage'])->middleware('auth')->name('showMessagePage');
 Route::post('/message/{username}', [MessageController::class, 'sendMessage'])->middleware('auth')->name('sendMessage');
+
+
+/**
+ * Groups
+ */
+Route::get('/groups', [GroupController::class, 'showAllGroup'])->middleware('auth')->name('allGroup');
+Route::get('/groups/create', [GroupConroller::class, 'getCreateGroup'])->middleware('auth')->name('createGroup');
+Route::post('/groups/create', [GroupConroller::class, 'createGroup'])->middleware('auth')->name('createGroup');
+Route::get('/groups/search', [SearchController::class, 'getGroup'])->middleware('auth')->name('searchGroup');
+Route::get('/group/{groupname}', [GroupController::class, 'showGroup'])->middleware('auth')->name('showGroup');
